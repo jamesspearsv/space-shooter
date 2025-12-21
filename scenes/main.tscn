@@ -1,12 +1,19 @@
-[gd_scene load_steps=3 format=3 uid="uid://bqtglccugsck5"]
+[gd_scene load_steps=4 format=3 uid="uid://bqtglccugsck5"]
 
-[ext_resource type="Script" uid="uid://d2j13db8e0ty2" path="res://node.gd" id="1_0wfyh"]
+[ext_resource type="Script" uid="uid://d2j13db8e0ty2" path="res://scripts/main.gd" id="1_0wfyh"]
+[ext_resource type="PackedScene" uid="uid://dbilnxqkyng0w" path="res://scenes/laser.tscn" id="2_jyhfs"]
 [ext_resource type="PackedScene" uid="uid://b45vjbgkhcjmm" path="res://scenes/player_ship.tscn" id="2_sugp2"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_0wfyh")
+laser_scene = ExtResource("2_jyhfs")
 
 [node name="StartingMarker" type="Marker2D" parent="."]
-position = Vector2(250, 650)
+position = Vector2(405, 1340)
 
 [node name="PlayerShip" parent="." instance=ExtResource("2_sugp2")]
+
+[node name="LaserCooldown" type="Timer" parent="."]
+wait_time = 0.2
+
+[connection signal="timeout" from="LaserCooldown" to="." method="_on_laser_cooldown_timeout"]

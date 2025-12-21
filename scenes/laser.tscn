@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=3 uid="uid://dbilnxqkyng0w"]
+
+[ext_resource type="Script" uid="uid://dbp7ks2q3rrsh" path="res://laser.gd" id="1_412cd"]
+[ext_resource type="Texture2D" uid="uid://di2lw562gom5p" path="res://assets/PNG/Effects/fire11.png" id="2_q8rul"]
+[ext_resource type="Texture2D" uid="uid://mdrq2mdmunc3" path="res://assets/PNG/Lasers/laserBlue02.png" id="3_788yo"]
+[ext_resource type="Texture2D" uid="uid://c0oj855xnu3e2" path="res://assets/PNG/Lasers/laserBlue13.png" id="4_dakmh"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xjiwp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_q8rul")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_788yo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_dakmh")
+}],
+"loop": false,
+"name": &"default",
+"speed": 30.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_iuany"]
+radius = 5.0
+height = 58.0
+
+[node name="Laser" type="Area2D"]
+script = ExtResource("1_412cd")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_xjiwp")
+autoplay = "default"
+frame = 2
+frame_progress = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_iuany")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
