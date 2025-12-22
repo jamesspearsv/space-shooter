@@ -1,0 +1,55 @@
+[gd_scene load_steps=8 format=3 uid="uid://ea2cbmhkitv7"]
+
+[ext_resource type="Texture2D" uid="uid://dp4ya1oqktsa5" path="res://assets/PNG/Enemies/enemyRed3.png" id="1_6o8wj"]
+[ext_resource type="Script" uid="uid://cvc1oafkh1ac7" path="res://scenes/enemy_ship.gd" id="1_7etwm"]
+[ext_resource type="Texture2D" uid="uid://b7j8gjlnco1ik" path="res://assets/PNG/Damage/playerShip3_damage3.png" id="2_62ykb"]
+[ext_resource type="Texture2D" uid="uid://hhfh26r0ob7d" path="res://assets/PNG/Damage/playerShip3_damage2.png" id="3_7etwm"]
+[ext_resource type="Texture2D" uid="uid://dpum3ruw3ypls" path="res://assets/PNG/Damage/playerShip3_damage1.png" id="4_tvo3c"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_g6g56"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_6o8wj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_62ykb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_7etwm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_tvo3c")
+}],
+"loop": true,
+"name": &"destroyed",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_6o8wj")
+}],
+"loop": true,
+"name": &"main",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6o8wj"]
+radius = 50.005623
+
+[node name="EnemyShip" type="RigidBody2D"]
+collision_mask = 0
+gravity_scale = 0.0
+script = ExtResource("1_7etwm")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_g6g56")
+animation = &"main"
+frame_progress = 0.0888438
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 6)
+shape = SubResource("CircleShape2D_6o8wj")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
