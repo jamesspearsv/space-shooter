@@ -20,6 +20,13 @@ config/icon="res://icon.svg"
 window/size/viewport_width=810
 window/size/viewport_height=1440
 window/size/resizable=false
+window/stretch/mode="viewport"
+window/stretch/aspect="expand"
+
+[editor]
+
+version_control/plugin_name="GitPlugin"
+version_control/autoload_on_startup=true
 
 [input]
 
