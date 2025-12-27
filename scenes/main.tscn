@@ -7,9 +7,9 @@
 
 [sub_resource type="Curve2D" id="Curve2D_0wfyh"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, -405, -1340, 0, 0, 0, 0, 405, -1340, 0, 0, 0, 0, -405, -1340)
+"points": PackedVector2Array(0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 812, 5, 0, 0, 0, 0, 1, 2, 0, 0, 0, 0, 0, 1)
 }
-point_count = 3
+point_count = 4
 
 [node name="Main" type="Node"]
 script = ExtResource("1_0wfyh")
@@ -25,27 +25,15 @@ position = Vector2(405, 1340)
 wait_time = 0.2
 
 [node name="EnemyPath" type="Path2D" parent="."]
-position = Vector2(405, 1478)
 curve = SubResource("Curve2D_0wfyh")
+metadata/_edit_group_ = true
 
 [node name="EnemySpawnLocation" type="PathFollow2D" parent="EnemyPath"]
-position = Vector2(-405, -1340)
+position = Vector2(0, 1)
 rotates = false
 
-[node name="Label" type="Label" parent="EnemyPath/EnemySpawnLocation"]
-offset_right = 40.0
-offset_bottom = 23.0
-text = "Enemy Spawn Location"
-
 [node name="EnemySpawnTimer" type="Timer" parent="."]
-wait_time = 0.5
 autostart = true
-
-[node name="Label" type="Label" parent="."]
-offset_left = 405.0
-offset_right = 445.0
-offset_bottom = 23.0
-text = "TOP"
 
 [connection signal="timeout" from="LaserCooldown" to="." method="_on_laser_cooldown_timeout"]
 [connection signal="timeout" from="EnemySpawnTimer" to="." method="_on_enemy_spawn_timer_timeout"]
